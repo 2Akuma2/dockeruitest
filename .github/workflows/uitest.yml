@@ -15,6 +15,11 @@ jobs:
     steps:
     
     - name: pull aditodesigner
+      if: runner.os == 'Windows'
+      shell: cmd
+      run: wsl --list --verbose
+    
+    - name: pull aditodesigner
       shell: bash
       run: docker pull adito/aditodesigner:2022.2.0.2
     
