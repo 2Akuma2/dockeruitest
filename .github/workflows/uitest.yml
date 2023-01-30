@@ -17,9 +17,9 @@ jobs:
     - name: pull aditodesigner
       if: runner.os == 'Windows'
       shell: pwsh
-      run: "& $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon"
-      #env:
-        #a: "& $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon"
+      run: ${{ env.a }}
+      env:
+        a: '& $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon'
     
     - name: pull aditodesigner
       shell: bash
