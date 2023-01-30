@@ -2,7 +2,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  test_job:
+  job_1:
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -24,3 +24,19 @@ jobs:
     - name: run download qfs inside container
       shell: bash
       run: docker exec designer echo $JAVA_HOME
+
+
+  job_2:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+    container:
+      image: adito/aditodesigner:2022.2.0.2
+    steps:
+    
+    - name: run download qfs inside container
+      shell: bash
+      run: echo $JAVA_HOME
