@@ -14,12 +14,14 @@ jobs:
       qfversion: '6.0.4'
     steps:
     
-    - name: pull aditodesigner
+    - name: try to fix me
       if: runner.os == 'Windows'
       shell: pwsh
-      run: ${{ env.a }}
-      env:
-        a: '& $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon'
+      run: |
+        Install-Module DockerProvider 
+        Install-Package Docker -ProviderName DockerProvider -RequiredVersion preview
+        [Environment]::SetEnvironmentVariable("LCOW_SUPPORTED", "1", "Machine") 
+        Restart-Service Docker
     
     - name: pull aditodesigner
       shell: bash
