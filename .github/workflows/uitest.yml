@@ -15,13 +15,9 @@ jobs:
     steps:
     
     - name: try to fix me
-      if: runner.os == 'Windows'
-      shell: pwsh
-      run: |
-        Install-Module DockerProvider -force
-        Install-Package Docker -ProviderName DockerProvider -RequiredVersion preview -force
-        [Environment]::SetEnvironmentVariable("LCOW_SUPPORTED", "1", "Machine") 
-        Restart-Service Docker
+      #if: runner.os == 'Windows'
+      shell: bash
+      run: docker version
     
     - name: pull aditodesigner
       shell: bash
