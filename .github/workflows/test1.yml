@@ -32,7 +32,9 @@ jobs:
     - name: connected
       shell: bash
       run: |
-        docker exec designer bash -c "pwd && cd .. && pwd"
+        docker exec designer bash -c "pwd && \
+        cd .. && \
+        pwd"
 
 
   job_2:
@@ -69,6 +71,8 @@ jobs:
       matrix:
         include:
           - os: ubuntu-latest
+    env:
+        qfversion: '6.0.4'
     steps:
     
     - name: test1
@@ -81,3 +85,4 @@ jobs:
           pwd
           echo $JAVA_HOME
           echo $PATH
+          curl -o qftest.tar.gz "https://www.qfs.de/fileadmin/Webdata/pub/qftest/QF-Test-${{ env.qfversion }}.tar.gz"
