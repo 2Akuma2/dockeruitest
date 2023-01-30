@@ -9,4 +9,18 @@ jobs:
       matrix:
         include:
           - os: ubuntu-latest
+    env:
+      qfversion: '6.0.4'
     steps:
+    
+    - name: pull aditodesigner
+      shell: bash
+      run: docker pull adito/aditodesigner:2022.2.0.2
+    
+    - name: run container
+      shell: bash
+      run: docker run -d --name designer adito/aditodesigner:2022.2.0.2
+      
+    - name: run download qfs inside container
+      shell: bash
+      run: docker exec -it designer echo $JAVA_HOME
