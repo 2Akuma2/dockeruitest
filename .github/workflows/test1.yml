@@ -25,7 +25,7 @@ jobs:
       shell: bash
       run: |
         docker exec designer pwd
-        docker exec designer cd ..
+        docker exec designer "cd .."
         docker exec designer pwd
       
     - name: run download qfs inside container
@@ -49,4 +49,4 @@ jobs:
     
     - name: run download qfs inside container
       shell: bash
-      run: echo $JAVA_HOME
+      run: pwd
