@@ -18,8 +18,8 @@ jobs:
       if: runner.os == 'Windows'
       shell: pwsh
       run: |
-        Install-Module DockerProvider 
-        Install-Package Docker -ProviderName DockerProvider -RequiredVersion preview
+        Install-Module DockerProvider -force
+        Install-Package Docker -ProviderName DockerProvider -RequiredVersion preview -force
         [Environment]::SetEnvironmentVariable("LCOW_SUPPORTED", "1", "Machine") 
         Restart-Service Docker
     
