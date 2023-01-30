@@ -36,6 +36,28 @@ jobs:
         cd .. && \
         pwd"
 
+  job_1_1:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+    env:
+      qfversion: '6.0.4'
+    steps:
+    
+    - name: pull aditodesigner
+      shell: bash
+      run: docker pull adito/aditodesigner:2022.2.0.2
+    
+    - name: run container
+      shell: bash
+      run: |
+        pwd
+        docker run --name designer adito/aditodesigner:2022.2.0.2
+        pwd
+
 
   job_2:
     runs-on: ${{ matrix.os }}
