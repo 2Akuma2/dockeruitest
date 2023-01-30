@@ -29,28 +29,22 @@ jobs:
     - name: install qfs
       shell: bash
       run: |
-        docker exec designer bash -c "\
-        tar xzvf qftest.tar.gz && \
+        docker exec designer bash -c "tar xzvf qftest.tar.gz && \
         cd qftest/qftest-${{ env.qfversion }} && \
-        printf 'y\ny\n1024\ng\n' | ./setup.sh && \
-        "
+        printf 'y\ny\n1024\ng\n' | ./setup.sh"
 
     - name: xvfb
       shell: bash
       run: |
-        docker exec designer bash -c "\
-        sudo apt-get update && \
+        docker exec designer bash -c "sudo apt-get update && \
         sudo apt-get upgrade && \
         sudo apt install xvfb && \
         export DISPLAY=:1 && \
         Xvfb :1 -screen 0 1600x1200x24 & && \
-        echo $DISPLAY -> :1 && \
-        "
+        echo $DISPLAY -> :1"
 
     - name: ui tests
       shell: bash
       run: |
-        docker exec designer bash -c "\
-        qftest/qftest-${{ env.qfversion }}/bin/qftest -batch -nomessagewindow -verbose all,errors -run qftest/qftest-${{ env.qfversion }}/demo/carconfig/carconfig_de.qft && \
-        "
+        docker exec designer bash -c "qftest/qftest-${{ env.qfversion }}/bin/qftest -batch -nomessagewindow -verbose all,errors -run qftest/qftest-${{ env.qfversion }}/demo/carconfig/carconfig_de.qft"
 
