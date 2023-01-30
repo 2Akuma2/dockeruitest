@@ -21,7 +21,7 @@ jobs:
       shell: bash
       run: docker run -d --name designer adito/aditodesigner:2022.2.0.2
       
-    - name: run download qfs inside container
+    - name: solo
       shell: bash
       run: |
         docker exec designer pwd
@@ -29,12 +29,10 @@ jobs:
         docker exec designer pwd
         docker exec designer echo $JAVA_HOME
       
-    - name: run download qfs inside container
+    - name: connected
       shell: bash
       run: |
-        docker exec designer pwd
-        docker exec designer bash -c "cd .."
-        docker exec designer pwd
+        docker exec designer bash -c "pwd && cd .. && pwd"
 
 
   job_2:
