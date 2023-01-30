@@ -23,7 +23,17 @@ jobs:
       
     - name: run download qfs inside container
       shell: bash
-      run: docker exec designer echo $JAVA_HOME
+      run: |
+        docker exec designer pwd
+        docker exec designer cd ..
+        docker exec designer pwd
+      
+    - name: run download qfs inside container
+      shell: bash
+      run: |
+        docker exec designer pwd
+        docker exec designer cd ..
+        docker exec designer pwd
 
 
   job_2:
