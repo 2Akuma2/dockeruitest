@@ -37,7 +37,7 @@ jobs:
       shell: bash
       run: |
         docker exec designer bash -c "sudo apt-get update"
-        docker exec designer bash -c "sudo apt-get upgrade"
+        docker exec designer bash -c "printf 'y' | sudo apt-get upgrade"
         docker exec designer bash -c "sudo apt install xvfb"
         docker exec designer bash -c "export DISPLAY=:1"
         docker exec designer bash -c "Xvfb :1 -screen 0 1600x1200x24 &"
