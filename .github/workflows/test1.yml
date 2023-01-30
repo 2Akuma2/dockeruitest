@@ -51,10 +51,34 @@ jobs:
       run: pwd
       
     - name: run download qfs inside container
-      run: echo hi
+      run: cd ..
+      
+    - name: run download qfs inside container
+      run: pwd
       
     - name: run download qfs inside container
       run: echo $JAVA_HOME
       
     - name: run download qfs inside container
       run: echo $PATH
+
+
+  job_3:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+    steps:
+    
+    - name: test1
+      uses: addnab/docker-run-action@v3
+      with:
+        image: adito/aditodesigner:2022.2.0.2
+        run: |
+          pwd
+          cd ..
+          pwd
+          echo $JAVA_HOME
+          echo $PATH
