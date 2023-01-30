@@ -24,9 +24,7 @@ jobs:
     - name: download qfs
       shell: bash
       run: |
-        docker exec designer bash -c "\
-        curl -o qftest.tar.gz "https://www.qfs.de/fileadmin/Webdata/pub/qftest/QF-Test-${{ env.qfversion }}.tar.gz" && \
-        "
+        docker exec designer bash -c "curl -o qftest.tar.gz "https://www.qfs.de/fileadmin/Webdata/pub/qftest/QF-Test-${{ env.qfversion }}.tar.gz""
 
     - name: install qfs
       shell: bash
