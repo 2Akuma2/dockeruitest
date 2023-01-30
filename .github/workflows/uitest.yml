@@ -15,7 +15,7 @@ jobs:
     steps:
     
     - name: try to fix me
-      #if: runner.os == 'Windows'
+      if: runner.os == 'Windows'
       shell: bash
       run: docker version
     
