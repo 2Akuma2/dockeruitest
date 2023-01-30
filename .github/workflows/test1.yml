@@ -32,7 +32,7 @@ jobs:
       shell: bash
       run: |
         docker exec designer pwd
-        docker exec designer cd ..
+        docker exec designer bash -c "cd .."
         docker exec designer pwd
 
 
@@ -80,5 +80,5 @@ jobs:
           pwd
           cd ..
           pwd
-          echo $JAVA_HOME
-          echo $PATH
+          echo \$JAVA_HOME
+          echo \$PATH
