@@ -1,0 +1,12 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  test_job:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+    steps:
