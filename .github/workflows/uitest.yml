@@ -36,12 +36,12 @@ jobs:
     - name: xvfb
       shell: bash
       run: |
-        docker exec designer bash -c "sudo apt-get update && \
-        sudo apt-get upgrade && \
-        sudo apt install xvfb && \
-        export DISPLAY=:1 && \
-        Xvfb :1 -screen 0 1600x1200x24 & && \
-        echo $DISPLAY -> :1"
+        docker exec designer bash -c "sudo apt-get update"
+        docker exec designer bash -c "sudo apt-get upgrade"
+        docker exec designer bash -c "sudo apt install xvfb"
+        docker exec designer bash -c "export DISPLAY=:1"
+        docker exec designer bash -c "Xvfb :1 -screen 0 1600x1200x24 &"
+        docker exec designer bash -c "echo $DISPLAY -> :1"
 
     - name: ui tests
       shell: bash
