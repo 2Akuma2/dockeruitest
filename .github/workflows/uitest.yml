@@ -9,19 +9,13 @@ jobs:
       matrix:
         include:
           - os: ubuntu-latest
-          - os: windows-latest
     env:
       qfversion: '6.0.4'
     steps:
     
-    - name: try to fix me
-      if: runner.os == 'Windows'
-      shell: bash
-      run: docker version
-    
     - name: pull aditodesigner
       shell: bash
-      run: docker pull adito/aditodesigner:2022.2.0.2
+      run: docker pull qualityfirstsoftware/qftest-interactive
     
     - name: run container
       shell: bash
