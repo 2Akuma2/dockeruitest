@@ -41,6 +41,8 @@ jobs:
         cd ..
         echo
         ls
+        echo
+        pwd
     
     - name: run container
       shell: bash
