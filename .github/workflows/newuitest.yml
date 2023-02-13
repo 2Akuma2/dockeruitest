@@ -1,0 +1,29 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  job_1:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+    env:
+      qfversion: '6.0.4'
+    steps:
+    
+    - name: pull aditodesigner
+      shell: bash
+      run: docker pull qualityfirstsoftware/qftest-interactive
+    
+    # ToDo: 
+    # 1) change paths
+    # 2) install java 13
+    # 2) add java 13 path to designer path
+    
+    
+    - name: run container
+      shell: bash
+      run: docker run -p 5901:5901 -v ${{ env.JAVA_HOME }}:/adito/java -v ${{ github.workspace }}/.github/workflows/uitest-action/QF-Test/license:/qftest/qftest-container/license -v ${{ github.workspace }}:/adito qualityfirstsoftware/qftest-interactive -batch -nomessagewindow -verbose errors,all -run /adito/.github/workflows/uitest-action/QF-Test/testsuites/exampleTestSuiteDesigner.qft
+     
