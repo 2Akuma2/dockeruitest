@@ -1,0 +1,41 @@
+name: "Execute UI Tests"
+description: "Executes all ui tests" # needs license & ADITOdesigner.conf in QF-Test folder
+runs:
+  using: "composite"
+  steps:
+    
+    - name: pull aditodesigner
+      shell: bash
+      run: docker pull qualityfirstsoftware/qftest-interactive
+    
+    - name: JDK
+      uses: actions/setup-java@v3
+      with:
+        java-version: 13
+        distribution: 'adopt'
+    
+    - name: ADITOdesigner.conf (lin)
+      if: runner.os == 'Linux'
+      working-directory: ./.github/workflows/uitest-action/QF-Test
+      shell: bash
+      run:  |
+        sed -i 's!SCALEUI!${{ env.scaleuilin }}!g' ADITOdesigner.conf
+        sed -i 's!FINALVERSION!${{ env.fullVersion }}!g' ADITOdesigner.conf
+        sed -i 's!jdkhome="jre"!jdkhome="/adito/java"!g' ADITOdesigner.conf
+        sed -i 's!BASEPATH/lib/designer!/adito/application/designer/target/aditodesigner!g' ADITOdesigner.conf
+        sed -i 's!BASEPATH!$/adito!g' ADITOdesigner.conf
+        mv -f ADITOdesigner.conf ${{ github.workspace }}/application/designer/target/aditodesigner/etc
+      env:
+        qfversion: '6.0.4'
+        scaleuilin: ''
+        fullVersion: '1234.5.6.7'
+    
+    # ToDo: 
+    # 1) change paths
+    # -v ${{ github.workspace }}/container_workdir:/workdir 
+    
+    
+    - name: run container
+      shell: bash
+      run: docker run -p 5901:5901 -v ${{ env.JAVA_HOME }}:/adito/java -v ${{ github.workspace }}/.github/workflows/uitest-action/QF-Test/license:/qftest/qftest-container/license -v ${{ github.workspace }}:/adito qualityfirstsoftware/qftest-interactive -batch -nomessagewindow -verbose errors,all -run /adito/.github/workflows/uitest-action/QF-Test/testsuites/exampleTestSuiteDesigner.qft
+     
