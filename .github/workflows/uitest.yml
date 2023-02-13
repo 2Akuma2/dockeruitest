@@ -19,7 +19,8 @@ jobs:
     
     # ToDo: 
     # 1) change paths
-    # 2) add java folder
+    # 2) install java 13
+    # 2) add java 13 path to designer path
     # 3) add license
     # docker run -p 5901:5901 -v C:\0\license:/qftest/qftest-container/license -v C:\0:/adito -v C:\0\container_workdir:/workdir qualityfirstsoftware/qftest-interactive -batch -nomessagewindow -verbose errors,all -run /adito/.github/workflows/uitest-action/QF-Test/testsuites/linuxTestSuite.qft
     
