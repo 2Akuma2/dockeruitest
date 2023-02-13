@@ -37,7 +37,9 @@ jobs:
     - run: |
         cd $JAVA_HOME
         ls
+        echo
         cd ..
+        echo
         ls
     
     - name: run container
