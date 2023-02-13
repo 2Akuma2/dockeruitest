@@ -26,6 +26,20 @@ jobs:
     
     - run: echo $GITHUB_WORKSPACE
     
+    - name: JDK
+      uses: actions/setup-java@v3
+      with:
+        java-version: 13
+        distribution: 'adopt'
+    
+    - run: echo $JAVA_HOME
+    
+    - run: |
+        cd $JAVA_HOME
+        ls
+        cd ..
+        ls
+    
     - name: run container
       shell: bash
       run: docker run -p 5901:5901 qualityfirstsoftware/qftest-interactive -batch -nomessagewindow -verbose errors,all -run /qftest/qftest-container/demo/carconfig/carconfig_de.qft
