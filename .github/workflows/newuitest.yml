@@ -17,10 +17,15 @@ jobs:
       shell: bash
       run: docker pull qualityfirstsoftware/qftest-interactive
     
+    - name: JDK
+      uses: actions/setup-java@v3
+      with:
+        java-version: 13
+        distribution: 'adopt'
+    
     # ToDo: 
     # 1) change paths
-    # 2) install java 13
-    # 2) add java 13 path to designer path
+    # -v ${{ github.workspace }}/container_workdir:/workdir 
     
     
     - name: run container
