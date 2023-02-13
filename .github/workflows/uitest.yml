@@ -24,6 +24,7 @@ jobs:
     # 3) add license
     # docker run -p 5901:5901 -v C:\0\license:/qftest/qftest-container/license -v C:\0:/adito -v C:\0\container_workdir:/workdir qualityfirstsoftware/qftest-interactive -batch -nomessagewindow -verbose errors,all -run /adito/.github/workflows/uitest-action/QF-Test/testsuites/linuxTestSuite.qft
     
+    - run: echo $GITHUB_WORKSPACE
     
     - name: run container
       shell: bash
