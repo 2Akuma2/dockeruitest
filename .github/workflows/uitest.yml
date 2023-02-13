@@ -17,34 +17,14 @@ jobs:
       shell: bash
       run: docker pull qualityfirstsoftware/qftest-interactive
     
+    # ToDo: 
+    # 1) change paths
+    # 2) add java folder
+    # 3) add license
+    # docker run -p 5901:5901 -v C:\0\license:/qftest/qftest-container/license -v C:\0:/adito -v C:\0\container_workdir:/workdir qualityfirstsoftware/qftest-interactive -batch -nomessagewindow -verbose errors,all -run /adito/.github/workflows/uitest-action/QF-Test/testsuites/linuxTestSuite.qft
+    
+    
     - name: run container
       shell: bash
-      run: docker run -d --name designer adito/aditodesigner:2022.2.0.2
-      
-    - name: download qfs
-      shell: bash
-      run: |
-        docker exec designer bash -c "curl -o qftest.tar.gz "https://www.qfs.de/fileadmin/Webdata/pub/qftest/QF-Test-${{ env.qfversion }}.tar.gz""
-
-    - name: install qfs
-      shell: bash
-      run: |
-        docker exec designer bash -c "tar xzvf qftest.tar.gz && \
-        cd qftest/qftest-${{ env.qfversion }} && \
-        printf 'y\ny\n1024\ng\n' | ./setup.sh"
-
-    - name: xvfb
-      shell: bash
-      run: |
-        docker exec designer bash -c "sudo apt-get update"
-        docker exec designer bash -c "printf 'y' | sudo apt-get upgrade"
-        docker exec designer bash -c "printf 'y' | sudo apt install xvfb"
-        docker exec designer bash -c "export DISPLAY=:1"
-        docker exec designer bash -c "Xvfb :1 -screen 0 1600x1200x24 &"
-        docker exec designer bash -c "echo $DISPLAY -> :1"
-
-    - name: ui tests
-      shell: bash
-      run: |
-        docker exec designer bash -c "qftest/qftest-${{ env.qfversion }}/bin/qftest -batch -nomessagewindow -verbose all,errors -run qftest/qftest-${{ env.qfversion }}/demo/carconfig/carconfig_de.qft"
-
+      run: docker run -p 5901:5901 qualityfirstsoftware/qftest-interactive -batch -nomessagewindow -verbose errors,all -run /qftest/qftest-container/demo/carconfig/carconfig_de.qft
+     
